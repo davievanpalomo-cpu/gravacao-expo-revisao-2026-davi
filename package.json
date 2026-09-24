@@ -15,6 +15,7 @@
     "@legendapp/motion": "^2.4.0",
     "babel-preset-expo": "~57.0.0",
     "expo": "~57.0.24",
+    "expo-camera": "~57.0.5",
     "expo-splash-screen": "~57.0.9",
     "expo-status-bar": "~57.0.1",
     "nativewind": "^5.0.0-preview.2",

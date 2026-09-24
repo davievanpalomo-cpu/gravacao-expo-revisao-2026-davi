@@ -146,7 +146,7 @@ export default function App() {
                     : styles.inativo
                 ]}
               >
-                ⌂
+                ◭
               </Text>
 
               <ButtonText
@@ -181,7 +181,7 @@ export default function App() {
                     : styles.inativo
                 ]}
               >
-                ✦
+                 ▦
               </Text>
 
               <ButtonText
@@ -216,7 +216,7 @@ export default function App() {
                     : styles.inativo
                 ]}
               >
-                ✓
+                ⇾
               </Text>
 
               <ButtonText
@@ -355,7 +355,7 @@ const styles = StyleSheet.create({
     width: 26,
     height: 4,
     borderRadius: 5,
-    backgroundColor: '#fcbf49',
+    backgroundColor: '#fcbf41',
   },
 
 });
