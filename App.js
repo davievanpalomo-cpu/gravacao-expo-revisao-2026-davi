@@ -93,7 +93,7 @@ export default function App() {
 
             <View style={styles.finalIcone}>
               <Text style={styles.check}>
-                ✓
+                👍
               </Text>
             </View>
 
@@ -181,7 +181,7 @@ export default function App() {
                     : styles.inativo
                 ]}
               >
-                 ▦
+                 ₸
               </Text>
 
               <ButtonText
@@ -216,7 +216,7 @@ export default function App() {
                     : styles.inativo
                 ]}
               >
-                ⇾
+                ↪
               </Text>
 
               <ButtonText
