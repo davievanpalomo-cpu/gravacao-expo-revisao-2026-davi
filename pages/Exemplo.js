@@ -3,76 +3,112 @@ import React from 'react';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { styles } from '../styles';
 
-export default function Exemplo({ navegar }) {
+const categorias = [
+  {
+    nome: 'Tecnologia',
+    descricao: 'Inovação, inteligência artificial e tecnologia.',
+    termo: 'tecnologia',
+    icone: '💻',
+  },
+  {
+    nome: 'Ciência',
+    descricao: 'Descobertas, pesquisas e meio ambiente.',
+    termo: 'ciência',
+    icone: '🔬',
+  },
+  {
+    nome: 'Esportes',
+    descricao: 'Competições, clubes e notícias esportivas.',
+    termo: 'esportes',
+    icone: '⚽',
+  },
+  {
+    nome: 'Entretenimento',
+    descricao: 'Cinema, televisão e cultura.',
+    termo: 'entretenimento',
+    icone: '🎬',
+  },
+  {
+    nome: 'Economia',
+    descricao: 'Mercado, empresas e economia.',
+    termo: 'economia',
+    icone: '📊',
+  },
+];
+
+export default function Exemplo({
+  navegar,
+  setPesquisa,
+  setErro,
+}) {
+  function escolherCategoria(termo) {
+    setPesquisa(termo);
+    setErro('');
+    navegar('home');
+  }
+
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
     >
       <Text style={styles.etiqueta}>ÁREA DE DESCOBERTA</Text>
-      <Text style={styles.titulo}>Explorar ✨</Text>
+
+      <Text style={styles.titulo}>Explorar notícias</Text>
+
       <Text style={styles.subtitulo}>
-        Um espaço para novas possibilidades.
+        Escolha uma categoria para começar sua pesquisa.
       </Text>
 
       <View style={styles.ilustracao}>
         <Text style={styles.ilustracaoIcone}>✦</Text>
         <Text style={styles.ilustracaoTitulo}>
-          Sua próxima ideia começa aqui.
+          Informação sobre todos os assuntos.
         </Text>
         <Text style={styles.ilustracaoTexto}>
-          Esta área pode receber ferramentas,
-          informações e recursos do seu projeto.
+          Selecione um tema. Depois, processe a pesquisa
+          na página inicial para encontrar notícias.
         </Text>
       </View>
 
       <Text style={styles.secaoTitulo}>
-        O que você pode fazer?
+        Categorias disponíveis
       </Text>
 
-      <View style={styles.cartao}>
-        <View style={styles.iconeCartao}>
-          <Text style={styles.iconeCartaoTexto}>01</Text>
-        </View>
-        <View style={styles.cartaoConteudo}>
-          <Text style={styles.cartaoTitulo}>
-            Personalizar
-          </Text>
-          <Text style={styles.cartaoTexto}>
-            Adicione suas próprias funcionalidades.
-          </Text>
-        </View>
-      </View>
+      {categorias.map((categoria) => (
+        <Pressable
+          key={categoria.termo}
+          onPress={() => escolherCategoria(categoria.termo)}
+          style={({ pressed }) => [
+            styles.cartao,
+            pressed && { opacity: 0.7 },
+          ]}
+        >
+          <View style={styles.iconeCartao}>
+            <Text style={styles.iconeCartaoTexto}>
+              {categoria.icone}
+            </Text>
+          </View>
 
-      <View style={styles.cartao}>
-        <View style={[styles.iconeCartao, styles.iconeAmarelo]}>
-          <Text style={styles.iconeCartaoTexto}>02</Text>
-        </View>
-        <View style={styles.cartaoConteudo}>
-          <Text style={styles.cartaoTitulo}>
-            Evoluir o projeto
-          </Text>
-          <Text style={styles.cartaoTexto}>
-            Transforme esta tela em uma área interativa.
-          </Text>
-        </View>
-      </View>
+          <View style={styles.cartaoConteudo}>
+            <Text style={styles.cartaoTitulo}>
+              {categoria.nome}
+            </Text>
+            <Text style={styles.cartaoTexto}>
+              {categoria.descricao}
+            </Text>
+          </View>
 
-      <Pressable
-        onPress={() => navegar('final')}
-        style={styles.botaoPrincipal}
-      >
-        <Text style={styles.botaoPrincipalTexto}>
-          Ir para a última página  →
-        </Text>
-      </Pressable>
+          <Text style={styles.seta}>›</Text>
+        </Pressable>
+      ))}
 
       <Pressable
         onPress={() => navegar('home')}
-        style={styles.botaoSecundario}
+        style={styles.botaoPrincipal}
       >
-        <Text style={styles.botaoSecundarioTexto}>
-          ← Voltar ao início
+        <Text style={styles.botaoPrincipalTexto}>
+          ← Voltar para pesquisar
         </Text>
       </Pressable>
     </ScrollView>

@@ -1,9 +1,24 @@
 
 import React from 'react';
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  ScrollView,
+  TextInput,
+  ActivityIndicator,
+} from 'react-native';
 import { styles } from '../styles';
 
-export default function Home({ navegar }) {
+export default function Home({
+  navegar,
+  pesquisa,
+  setPesquisa,
+  carregando,
+  erro,
+  setErro,
+  processarNoticias,
+}) {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
@@ -11,91 +26,120 @@ export default function Home({ navegar }) {
     >
       <View style={styles.topo}>
         <View>
-          <Text style={styles.etiqueta}>SEU APLICATIVO</Text>
-          <Text style={styles.titulo}>Olá! 👋</Text>
+          <Text style={styles.etiqueta}>NEWSFLOW</Text>
+          <Text style={styles.titulo}>Notícias em foco.</Text>
           <Text style={styles.subtitulo}>
-            Que bom ter você por aqui.
+            Informação ao seu alcance.
           </Text>
         </View>
 
         <View style={styles.avatar}>
-          <Text style={styles.avatarTexto}>H</Text>
+          <Text style={styles.avatarTexto}>N</Text>
         </View>
       </View>
 
       <View style={styles.banner}>
         <Text style={styles.bannerEtiqueta}>
-          BEM-VINDO
+          PESQUISE E DESCUBRA
         </Text>
 
         <Text style={styles.bannerTitulo}>
-          Ideias que ganham vida.
+          O que está acontecendo no mundo?
         </Text>
 
         <Text style={styles.bannerTexto}>
-          Explore as funcionalidades e descubra
-          tudo o que preparamos para você.
+          Escolha um assunto e processe as notícias
+          para encontrar matérias relacionadas.
         </Text>
 
+        <TextInput
+          value={pesquisa}
+          onChangeText={(texto) => {
+            setPesquisa(texto);
+            setErro('');
+          }}
+          placeholder="Ex.: tecnologia, ciência..."
+          placeholderTextColor="#777777"
+          returnKeyType="search"
+          onSubmitEditing={() => processarNoticias()}
+          style={{
+            backgroundColor: '#FFFFFF',
+            color: '#222222',
+            padding: 13,
+            borderRadius: 10,
+            marginTop: 16,
+            marginBottom: 10,
+          }}
+        />
+
         <Pressable
-          onPress={() => navegar('exemplo')}
+          disabled={carregando}
+          onPress={() => processarNoticias()}
           style={({ pressed }) => [
             styles.botaoBanner,
             pressed && { opacity: 0.8 },
+            carregando && { opacity: 0.6 },
           ]}
         >
           <Text style={styles.botaoBannerTexto}>
-            Começar agora  →
+            {carregando
+              ? 'Processando...'
+              : 'Processar notícias →'}
           </Text>
         </Pressable>
+
+        {carregando && (
+          <ActivityIndicator
+            color="#FFFFFF"
+            style={{ marginTop: 12 }}
+          />
+        )}
+
+        {!!erro && (
+          <Text
+            style={{
+              color: '#FFFFFF',
+              marginTop: 12,
+              fontWeight: '600',
+            }}
+          >
+            {erro}
+          </Text>
+        )}
 
         <Text style={styles.bannerDecoracao}>✦</Text>
       </View>
 
       <Text style={styles.secaoTitulo}>
-        Visão geral
+        Explore o NewsFlow
       </Text>
 
-      <View style={styles.cartao}>
+      <Pressable
+        onPress={() => navegar('exemplo')}
+        style={styles.cartao}
+      >
         <View style={styles.iconeCartao}>
           <Text style={styles.iconeCartaoTexto}>✦</Text>
         </View>
 
         <View style={styles.cartaoConteudo}>
           <Text style={styles.cartaoTitulo}>
-            Descubra novidades
+            Explorar categorias
           </Text>
           <Text style={styles.cartaoTexto}>
-            Conheça a segunda página e suas funcionalidades.
+            Descubra assuntos para pesquisar.
           </Text>
         </View>
 
         <Text style={styles.seta}>›</Text>
-      </View>
-
-      <View style={styles.cartao}>
-        <View style={[styles.iconeCartao, styles.iconeAmarelo]}>
-          <Text style={styles.iconeCartaoTexto}>✓</Text>
-        </View>
-
-        <View style={styles.cartaoConteudo}>
-          <Text style={styles.cartaoTitulo}>
-            Acompanhe seu progresso
-          </Text>
-          <Text style={styles.cartaoTexto}>
-            Visite a última tela para conhecer o encerramento.
-          </Text>
-        </View>
-
-        <Text style={styles.seta}>›</Text>
-      </View>
+      </Pressable>
 
       <Pressable
         onPress={() => navegar('final')}
         style={styles.botaoSecundario}
       >
         <Text style={styles.botaoSecundarioTexto}>
-          Conhecer a última página  →
+          Ver últimos resultados →
         </Text>
       </Pressable>
     </ScrollView>
