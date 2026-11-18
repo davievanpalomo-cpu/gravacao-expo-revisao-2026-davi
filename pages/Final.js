@@ -5,17 +5,22 @@ import {
   Text,
   Pressable,
   ScrollView,
+  TextInput,
   Image,
   Linking,
+  ActivityIndicator,
 } from 'react-native';
+
 import { styles } from '../styles';
 
 export default function Final({
   navegar,
   pesquisa,
+  setPesquisa,
   noticias,
   carregando,
   erro,
+  setErro,
   processarNoticias,
 }) {
   function formatarData(data) {
@@ -35,45 +40,99 @@ export default function Final({
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
     >
-      <View style={styles.finalIcone}>
-        <Text style={styles.finalIconeTexto}>✓</Text>
-      </View>
+      <Text style={styles.etiqueta}>NEWSFLOW</Text>
 
-      <Text style={styles.etiqueta}>RESULTADO DO PROCESSAMENTO</Text>
-
-      <Text style={styles.titulo}>Notícias encontradas</Text>
+      <Text style={styles.titulo}>Resultados 📰</Text>
 
       <Text style={styles.subtitulo}>
-        {pesquisa
-          ? `Assunto pesquisado: ${pesquisa}`
-          : 'Faça uma pesquisa para visualizar os resultados.'}
+        Pesquise um assunto e encontre notícias.
       </Text>
 
+      <View style={styles.bannerFinal}>
+        <Text style={styles.bannerFinalTitulo}>
+          Pesquisa de notícias
+        </Text>
+
+        <Text style={styles.bannerFinalTexto}>
+          Digite uma palavra ou assunto para buscar
+          matérias disponíveis na nossa API.
+        </Text>
+
+        <TextInput
+          value={pesquisa}
+          onChangeText={(texto) => {
+            setPesquisa(texto);
+            setErro('');
+          }}
+          placeholder="Ex.: tecnologia, esportes..."
+          placeholderTextColor="#777777"
+          returnKeyType="search"
+          onSubmitEditing={() => processarNoticias()}
+          style={{
+          backgroundColor: '#FFFFFF',
+          color: '#0D2340',
+          borderWidth: 1,
+          borderColor: '#BBD6F0',
+          padding: 14,
+          borderRadius: 12,
+          marginTop: 15,
+          marginBottom: 12,
+}}
+        />
+
+        <Pressable
+          disabled={carregando}
+          onPress={() => processarNoticias()}
+          style={[
+            styles.botaoPrincipal,
+            { backgroundColor: '#FFFFFF' },
+            carregando && { opacity: 0.6 },
+          ]}
+        >
+          <Text
+            style={[
+              styles.botaoPrincipalTexto,
+              { color: '#222222' },
+            ]}
+          >
+            {carregando
+              ? 'Processando...'
+              : 'Processar notícias →'}
+          </Text>
+        </Pressable>
+      </View>
+
+      {carregando && (
+        <ActivityIndicator
+          size="large"
+          color="#d62828"
+          style={{ marginVertical: 20 }}
+        />
+      )}
+
       {!!erro && (
-        <View style={styles.bannerFinal}>
-          <Text style={styles.bannerFinalTitulo}>
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>
             Atenção
           </Text>
-          <Text style={styles.bannerFinalTexto}>
+          <Text style={styles.cartaoTexto}>
             {erro}
           </Text>
         </View>
       )}
 
-      {carregando && (
-        <Text style={styles.cartaoTexto}>
-          Carregando notícias...
-        </Text>
-      )}
+      <Text style={styles.secaoTitulo}>
+        Notícias encontradas
+      </Text>
 
       {!carregando && noticias.length === 0 && !erro && (
-        <View style={styles.bannerFinal}>
-          <Text style={styles.bannerFinalTitulo}>
-            Nenhum resultado ainda
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>
+            Nenhuma pesquisa realizada
           </Text>
-          <Text style={styles.bannerFinalTexto}>
-            Volte à página inicial, digite um assunto
-            e clique em Processar notícias.
+          <Text style={styles.cartaoTexto}>
+            Digite um assunto acima e clique em
+            Processar notícias para visualizar os resultados.
           </Text>
         </View>
       )}
@@ -134,15 +193,6 @@ export default function Final({
       ))}
 
       <Pressable
-        onPress={() => processarNoticias()}
-        style={styles.botaoSecundario}
-      >
-        <Text style={styles.botaoSecundarioTexto}>
-          ↻ Pesquisar novamente
-        </Text>
-      </Pressable>
-
-      <Pressable
         onPress={() => navegar('home')}
         style={styles.botaoSecundario}
       >
@@ -150,6 +200,7 @@ export default function Final({
           ← Voltar ao início
         </Text>
       </Pressable>
+
     </ScrollView>
   );
 }

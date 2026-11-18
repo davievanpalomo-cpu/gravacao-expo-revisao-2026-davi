@@ -44,7 +44,7 @@ export default function Exemplo({
   function escolherCategoria(termo) {
     setPesquisa(termo);
     setErro('');
-    navegar('home');
+    navegar('final');
   }
 
   return (
@@ -57,7 +57,7 @@ export default function Exemplo({
       <Text style={styles.titulo}>Explorar notícias</Text>
 
       <Text style={styles.subtitulo}>
-        Escolha uma categoria para começar sua pesquisa.
+        Escolha uma categoria para encontrar notícias.
       </Text>
 
       <View style={styles.ilustracao}>
@@ -66,8 +66,8 @@ export default function Exemplo({
           Informação sobre todos os assuntos.
         </Text>
         <Text style={styles.ilustracaoTexto}>
-          Selecione um tema. Depois, processe a pesquisa
-          na página inicial para encontrar notícias.
+          Selecione um tema e encontre conteúdos
+          relacionados na página de resultados.
         </Text>
       </View>
 
@@ -108,7 +108,7 @@ export default function Exemplo({
         style={styles.botaoPrincipal}
       >
         <Text style={styles.botaoPrincipalTexto}>
-          ← Voltar para pesquisar
+          ← Voltar ao início
         </Text>
       </Pressable>
     </ScrollView>

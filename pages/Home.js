@@ -1,24 +1,9 @@
 
 import React from 'react';
-import {
-  View,
-  Text,
-  Pressable,
-  ScrollView,
-  TextInput,
-  ActivityIndicator,
-} from 'react-native';
+import { View, Text, Pressable, ScrollView } from 'react-native';
 import { styles } from '../styles';
 
-export default function Home({
-  navegar,
-  pesquisa,
-  setPesquisa,
-  carregando,
-  erro,
-  setErro,
-  processarNoticias,
-}) {
+export default function Home({ navegar }) {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
@@ -26,8 +11,8 @@ export default function Home({
     >
       <View style={styles.topo}>
         <View>
-          <Text style={styles.etiqueta}>NEWSFLOW</Text>
-          <Text style={styles.titulo}>Notícias em foco.</Text>
+          <Text style={styles.etiqueta}>BEM-VINDO AO</Text>
+          <Text style={styles.titulo}>NewsFlow.</Text>
           <Text style={styles.subtitulo}>
             Informação ao seu alcance.
           </Text>
@@ -40,108 +25,105 @@ export default function Home({
 
       <View style={styles.banner}>
         <Text style={styles.bannerEtiqueta}>
-          PESQUISE E DESCUBRA
+          INFORME-SE. DESCUBRA. CONECTE-SE.
         </Text>
 
         <Text style={styles.bannerTitulo}>
-          O que está acontecendo no mundo?
+          O mundo acontece. Você fica por dentro.
         </Text>
 
         <Text style={styles.bannerTexto}>
-          Escolha um assunto e processe as notícias
-          para encontrar matérias relacionadas.
+          Acompanhe acontecimentos, descubra novidades
+          e encontre informações sobre os assuntos
+          que fazem parte do seu dia a dia.
         </Text>
 
-        <TextInput
-          value={pesquisa}
-          onChangeText={(texto) => {
-            setPesquisa(texto);
-            setErro('');
-          }}
-          placeholder="Ex.: tecnologia, ciência..."
-          placeholderTextColor="#777777"
-          returnKeyType="search"
-          onSubmitEditing={() => processarNoticias()}
-          style={{
-            backgroundColor: '#FFFFFF',
-            color: '#222222',
-            padding: 13,
-            borderRadius: 10,
-            marginTop: 16,
-            marginBottom: 10,
-          }}
-        />
-
         <Pressable
-          disabled={carregando}
-          onPress={() => processarNoticias()}
-          style={({ pressed }) => [
-            styles.botaoBanner,
-            pressed && { opacity: 0.8 },
-            carregando && { opacity: 0.6 },
-          ]}
+          onPress={() => navegar('exemplo')}
+          style={styles.botaoBanner}
         >
           <Text style={styles.botaoBannerTexto}>
-            {carregando
-              ? 'Processando...'
-              : 'Processar notícias →'}
+            Explorar notícias →
           </Text>
         </Pressable>
-
-        {carregando && (
-          <ActivityIndicator
-            color="#FFFFFF"
-            style={{ marginTop: 12 }}
-          />
-        )}
-
-        {!!erro && (
-          <Text
-            style={{
-              color: '#FFFFFF',
-              marginTop: 12,
-              fontWeight: '600',
-            }}
-          >
-            {erro}
-          </Text>
-        )}
 
         <Text style={styles.bannerDecoracao}>✦</Text>
       </View>
 
       <Text style={styles.secaoTitulo}>
-        Explore o NewsFlow
+        Sobre o NewsFlow
       </Text>
 
-      <Pressable
-        onPress={() => navegar('exemplo')}
-        style={styles.cartao}
-      >
+      <View style={styles.cartao}>
         <View style={styles.iconeCartao}>
+          <Text style={styles.iconeCartaoTexto}>◎</Text>
+        </View>
+
+        <View style={styles.cartaoConteudo}>
+          <Text style={styles.cartaoTitulo}>
+            Nossa proposta
+          </Text>
+          <Text style={styles.cartaoTexto}>
+            Facilitar o acesso às notícias por meio
+            de uma plataforma simples e organizada.
+          </Text>
+        </View>
+      </View>
+
+      <View style={styles.cartao}>
+        <View style={[styles.iconeCartao, styles.iconeAmarelo]}>
           <Text style={styles.iconeCartaoTexto}>✦</Text>
         </View>
 
         <View style={styles.cartaoConteudo}>
           <Text style={styles.cartaoTitulo}>
-            Explorar categorias
+            Nosso objetivo
           </Text>
           <Text style={styles.cartaoTexto}>
-            Descubra assuntos para pesquisar.
+            Reunir informações de diferentes assuntos
+            e ajudar o usuário a encontrar notícias
+            de seu interesse.
           </Text>
         </View>
+      </View>
 
-        <Text style={styles.seta}>›</Text>
-      </Pressable>
+      <Text style={styles.secaoTitulo}>
+        O que você encontra aqui?
+      </Text>
+
+      <View style={styles.cartao}>
+        <View style={styles.cartaoConteudo}>
+          <Text style={styles.cartaoTitulo}>
+            📰 Notícias atualizadas
+          </Text>
+          <Text style={styles.cartaoTexto}>
+            Consulte matérias disponíveis através
+            de nossa integração com uma API de notícias.
+          </Text>
+        </View>
+      </View>
+
+      <View style={styles.cartao}>
+        <View style={styles.cartaoConteudo}>
+          <Text style={styles.cartaoTitulo}>
+            🔎 Pesquisa por assuntos
+          </Text>
+          <Text style={styles.cartaoTexto}>
+            Encontre conteúdos de tecnologia, ciência,
+            esportes, economia e muito mais.
+          </Text>
+        </View>
+      </View>
 
       <Pressable
         onPress={() => navegar('final')}
         style={styles.botaoSecundario}
       >
         <Text style={styles.botaoSecundarioTexto}>
-          Ver últimos resultados →
+          Ir para os resultados →
         </Text>
       </Pressable>
+
     </ScrollView>
   );
 }

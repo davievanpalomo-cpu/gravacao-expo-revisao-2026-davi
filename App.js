@@ -1,75 +1,21 @@
 
 import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
-
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import '@/global.css';
 
 import Home from './pages/Home';
 import Exemplo from './pages/Exemplo';
 import Final from './pages/Final';
-import { styles } from './styles';
 
-// Crie sua chave em https://newsapi.org/
-const API_KEY = '8b05bf94ee514700a7febce9d4d96ce9';
+import { styles } from './styles';
 
 export default function App() {
   const [pagina, setPagina] = useState('home');
+
   const [pesquisa, setPesquisa] = useState('');
   const [noticias, setNoticias] = useState([]);
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState('');
-
-  async function processarNoticias(termo = pesquisa) {
-    const assunto = termo.trim();
-
-    if (!assunto) {
-      setErro('Digite um assunto para pesquisar.');
-      setPagina('home');
-      return;
-    }
-
-    setPesquisa(assunto);
-    setErro('');
-    setCarregando(true);
-
-    try {
-      const url =
-        'https://newsapi.org/v2/everything?q=' +
-        encodeURIComponent(assunto) +
-        '&language=pt&sortBy=publishedAt&pageSize=10&apiKey=' +
-        API_KEY;
-
-      const resposta = await fetch(url);
-      const dados = await resposta.json();
-
-      if (!resposta.ok || dados.status !== 'ok') {
-        throw new Error(
-          dados.message || 'Não foi possível buscar as notícias.'
-        );
-      }
-
-      const resultados = (dados.articles || []).filter(
-        (item) =>
-          item.title &&
-          item.title !== '[Removed]' &&
-          item.url
-      );
-
-      setNoticias(resultados);
-      setPagina('final');
-
-      if (resultados.length === 0) {
-        setErro('Nenhuma notícia foi encontrada para esse assunto.');
-      }
-    } catch (e) {
-      setErro(
-        e.message || 'Ocorreu um erro ao consultar a API.'
-      );
-    } finally {
-      setCarregando(false);
-    }
-  }
 
   const paginas = {
     home: Home,
@@ -78,6 +24,10 @@ export default function App() {
   };
 
   const PaginaAtual = paginas[pagina];
+
+  async function processarNoticias() {
+    // Mantenha aqui a função de consulta da NewsAPI
+  }
 
   return (
     <GluestackUIProvider mode="light">
@@ -97,44 +47,30 @@ export default function App() {
 
         <View style={styles.rodape}>
           {[
-            { id: 'home', icone: '⌂', nome: 'Início' },
-            { id: 'exemplo', icone: '✦', nome: 'Explorar' },
-            { id: 'final', icone: '▤', nome: 'Resultados' },
-          ].map((item) => {
-            const ativo = pagina === item.id;
+            { id: 'home', nome: 'Início', icone: '⌂' },
+            { id: 'exemplo', nome: 'Explorar', icone: '⌕' },
+            { id: 'final', nome: 'Resultados', icone: '▤' },
+          ].map((item) => (
+            <Pressable
+              key={item.id}
+              style={styles.itemMenu}
+              onPress={() => setPagina(item.id)}
+            >
+              <Text style={[
+                styles.iconeMenu,
+                pagina === item.id && styles.textoAtivo
+              ]}>
+                {item.icone}
+              </Text>
 
-            return (
-              <Pressable
-                key={item.id}
-                onPress={() => setPagina(item.id)}
-                style={({ pressed }) => [
-                  styles.itemMenu,
-                  ativo && styles.itemMenuAtivo,
-                  pressed && { opacity: 0.7 },
-                ]}
-              >
-                <Text
-                  style={[
-                    styles.iconeMenu,
-                    ativo && styles.textoAtivo,
-                  ]}
-                >
-                  {item.icone}
-                </Text>
-
-                <Text
-                  style={[
-                    styles.textoMenu,
-                    ativo && styles.textoAtivo,
-                  ]}
-                >
-                  {item.nome}
-                </Text>
-
-                {ativo && <View style={styles.indicador} />}
-              </Pressable>
-            );
-          })}
+              <Text style={[
+                styles.textoMenu,
+                pagina === item.id && styles.textoAtivo
+              ]}>
+                {item.nome}
+              </Text>
+            </Pressable>
+          ))}
         </View>
       </View>
     </GluestackUIProvider>

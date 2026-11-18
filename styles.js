@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   tela: {
     flex: 1,
-    backgroundColor: '#F7F8FC',
+    backgroundColor: '#F4F8FC',
   },
 
   conteudo: {
@@ -12,148 +12,148 @@ export const styles = StyleSheet.create({
   },
 
   container: {
-    flexGrow: 1,
-    paddingHorizontal: 22,
-    paddingTop: 38,
-    paddingBottom: 28,
+    padding: 22,
+    paddingBottom: 35,
   },
 
   topo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 26,
+    marginBottom: 25,
   },
 
   etiqueta: {
+    color: '#1565C0',
     fontSize: 11,
     fontWeight: '800',
-    letterSpacing: 2,
-    color: '#D62828',
-    marginBottom: 9,
+    letterSpacing: 1.5,
+    marginBottom: 8,
   },
 
   titulo: {
-    fontSize: 32,
+    color: '#0D2340',
+    fontSize: 29,
     fontWeight: '800',
-    color: '#20243A',
-    marginBottom: 7,
+    marginBottom: 6,
   },
 
   subtitulo: {
-    fontSize: 15,
-    lineHeight: 23,
-    color: '#85899B',
-    marginBottom: 26,
+    color: '#64748B',
+    fontSize: 14,
+    lineHeight: 21,
   },
 
   avatar: {
     width: 52,
     height: 52,
-    borderRadius: 18,
-    backgroundColor: '#FCE5E4',
+    backgroundColor: '#1565C0',
+    borderRadius: 17,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   avatarTexto: {
-    color: '#D62828',
+    color: '#FFFFFF',
     fontSize: 23,
     fontWeight: '800',
   },
 
   banner: {
-    backgroundColor: '#D62828',
-    borderRadius: 25,
+    backgroundColor: '#0D2340',
+    borderRadius: 22,
     padding: 23,
-    marginBottom: 30,
+    marginBottom: 28,
     overflow: 'hidden',
   },
 
   bannerEtiqueta: {
-    color: '#FFD7A0',
+    color: '#90CAF9',
     fontSize: 11,
     fontWeight: '800',
-    letterSpacing: 2,
-    marginBottom: 12,
+    letterSpacing: 1.3,
+    marginBottom: 13,
   },
 
   bannerTitulo: {
     color: '#FFFFFF',
-    fontSize: 27,
+    fontSize: 25,
     fontWeight: '800',
-    lineHeight: 34,
-    maxWidth: '90%',
-    marginBottom: 10,
+    lineHeight: 33,
+    marginBottom: 12,
   },
 
   bannerTexto: {
-    color: '#FFE9E7',
+    color: '#D6E5F5',
     fontSize: 14,
     lineHeight: 22,
-    marginBottom: 22,
-    maxWidth: '95%',
-  },
-
-  bannerDecoracao: {
-    position: 'absolute',
-    right: 12,
-    top: 35,
-    color: '#FFFFFF',
-    opacity: 0.12,
-    fontSize: 95,
   },
 
   botaoBanner: {
-    backgroundColor: '#FFC857',
-    borderRadius: 13,
-    paddingVertical: 15,
-    paddingHorizontal: 17,
-    alignSelf: 'flex-start',
+    backgroundColor: '#42A5F5',
+    padding: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginTop: 17,
   },
 
   botaoBannerTexto: {
-    color: '#542020',
-    fontSize: 14,
+    color: '#FFFFFF',
     fontWeight: '800',
+    fontSize: 14,
+  },
+
+  bannerDecoracao: {
+    color: '#42A5F5',
+    fontSize: 60,
+    position: 'absolute',
+    right: 15,
+    top: 5,
+    opacity: 0.16,
   },
 
   secaoTitulo: {
+    color: '#0D2340',
     fontSize: 19,
     fontWeight: '800',
-    color: '#20243A',
-    marginBottom: 16,
+    marginBottom: 15,
+    marginTop: 8,
   },
 
   cartao: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 19,
+    borderRadius: 17,
     padding: 16,
     marginBottom: 13,
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#EFF0F5',
+    borderColor: '#E3EDF7',
+    elevation: 2,
+    shadowColor: '#0D2340',
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
   },
 
   iconeCartao: {
-    width: 47,
-    height: 47,
-    borderRadius: 15,
-    backgroundColor: '#FCE8E7',
+    width: 45,
+    height: 45,
+    borderRadius: 14,
+    backgroundColor: '#E3F2FD',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 14,
+    marginRight: 13,
   },
 
   iconeAmarelo: {
-    backgroundColor: '#FFF1C9',
+    backgroundColor: '#D6E9FA',
   },
 
   iconeCartaoTexto: {
-    fontSize: 18,
+    color: '#1565C0',
+    fontSize: 19,
     fontWeight: '800',
-    color: '#D62828',
   },
 
   cartaoConteudo: {
@@ -161,175 +161,158 @@ export const styles = StyleSheet.create({
   },
 
   cartaoTitulo: {
+    color: '#0D2340',
     fontSize: 15,
     fontWeight: '800',
-    color: '#292D40',
     marginBottom: 5,
   },
 
   cartaoTexto: {
+    color: '#64748B',
     fontSize: 13,
-    lineHeight: 19,
-    color: '#85899B',
+    lineHeight: 20,
   },
 
   seta: {
-    color: '#D62828',
-    fontSize: 27,
+    color: '#1565C0',
+    fontSize: 25,
     marginLeft: 8,
   },
 
   botaoPrincipal: {
-    backgroundColor: '#D62828',
-    paddingVertical: 17,
-    paddingHorizontal: 18,
-    borderRadius: 15,
+    backgroundColor: '#1565C0',
+    padding: 15,
+    borderRadius: 13,
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 12,
-    marginBottom: 12,
+    marginTop: 10,
   },
 
   botaoPrincipalTexto: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: '800',
   },
 
   botaoSecundario: {
-    backgroundColor: '#FFFFFF',
-    paddingVertical: 16,
-    paddingHorizontal: 18,
-    borderRadius: 15,
+    backgroundColor: '#E3F2FD',
+    padding: 15,
+    borderRadius: 13,
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#F0D8D8',
-    marginTop: 5,
-    marginBottom: 10,
+    marginTop: 10,
   },
 
   botaoSecundarioTexto: {
-    color: '#D62828',
+    color: '#1565C0',
     fontSize: 14,
-    fontWeight: '700',
+    fontWeight: '800',
   },
 
   ilustracao: {
-    backgroundColor: '#FFF0D0',
-    borderRadius: 23,
-    padding: 24,
-    alignItems: 'flex-start',
-    marginBottom: 30,
+    backgroundColor: '#DCEEFF',
+    padding: 23,
+    borderRadius: 20,
+    marginVertical: 22,
   },
 
   ilustracaoIcone: {
-    fontSize: 39,
-    color: '#D62828',
-    marginBottom: 14,
-  },
-
-  ilustracaoTitulo: {
-    color: '#292D40',
-    fontSize: 23,
-    lineHeight: 30,
-    fontWeight: '800',
+    color: '#1565C0',
+    fontSize: 35,
     marginBottom: 10,
   },
 
+  ilustracaoTitulo: {
+    color: '#0D2340',
+    fontSize: 19,
+    fontWeight: '800',
+    marginBottom: 8,
+  },
+
   ilustracaoTexto: {
-    color: '#71685C',
-    fontSize: 14,
-    lineHeight: 22,
+    color: '#496783',
+    fontSize: 13,
+    lineHeight: 21,
   },
 
   finalIcone: {
-    width: 90,
-    height: 90,
-    borderRadius: 30,
-    backgroundColor: '#FFF0C8',
+    width: 58,
+    height: 58,
+    backgroundColor: '#DCEEFF',
+    borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'center',
-    marginTop: 30,
-    marginBottom: 25,
+    marginBottom: 20,
   },
 
   finalIconeTexto: {
-    color: '#D62828',
-    fontSize: 48,
+    color: '#1565C0',
+    fontSize: 27,
     fontWeight: '800',
   },
 
   bannerFinal: {
-    backgroundColor: '#FFFFFF',
-    padding: 22,
-    borderRadius: 21,
-    borderWidth: 1,
-    borderColor: '#F0D8D8',
-    marginBottom: 23,
+    backgroundColor: '#0D2340',
+    padding: 21,
+    borderRadius: 19,
+    marginVertical: 16,
   },
 
   bannerFinalTitulo: {
-    color: '#D62828',
-    fontSize: 21,
+    color: '#FFFFFF',
+    fontSize: 18,
     fontWeight: '800',
-    marginBottom: 12,
+    marginBottom: 10,
   },
 
   bannerFinalTexto: {
-    color: '#777D90',
-    fontSize: 15,
-    lineHeight: 24,
+    color: '#D6E5F5',
+    fontSize: 14,
+    lineHeight: 22,
   },
 
   rodape: {
-    flexDirection: 'row',
-    alignItems: 'center',
     backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingTop: 12,
+    paddingBottom: 12,
     borderTopWidth: 1,
-    borderTopColor: '#ECEEF4',
-    paddingHorizontal: 12,
-    paddingTop: 9,
-    paddingBottom: 10,
-    minHeight: 78,
+    borderTopColor: '#E3EDF7',
   },
 
   itemMenu: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 7,
-    borderRadius: 15,
-    position: 'relative',
+    paddingVertical: 5,
   },
 
   itemMenuAtivo: {
-    backgroundColor: '#FFF3F2',
+    backgroundColor: '#EAF4FF',
+    borderRadius: 12,
   },
 
   iconeMenu: {
-    fontSize: 24,
-    color: '#A2A5B3',
+    fontSize: 21,
+    color: '#94A3B8',
     marginBottom: 3,
   },
 
   textoMenu: {
+    color: '#94A3B8',
     fontSize: 11,
     fontWeight: '600',
-    color: '#9296A5',
   },
 
   textoAtivo: {
-    color: '#D62828',
+    color: '#1565C0',
     fontWeight: '800',
   },
 
   indicador: {
-    position: 'absolute',
-    bottom: -9,
-    width: 22,
-    height: 3,
+    width: 5,
+    height: 5,
     borderRadius: 5,
-    backgroundColor: '#FFC857',
+    backgroundColor: '#1565C0',
+    marginTop: 3,
   },
 });
