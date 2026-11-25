@@ -1,7 +1,10 @@
-
 import React from 'react';
-import { View, Text, Pressable, ScrollView } from 'react-native';
-import { styles } from '../styles';
+import {
+  View,
+  Text,
+  Pressable,
+  ScrollView
+} from 'react-native';
 
 const categorias = [
   {
@@ -34,15 +37,44 @@ const categorias = [
     termo: 'economia',
     icone: '📊',
   },
+  {
+    nome: 'Educação',
+    descricao: 'Conhecimento, escolas e oportunidades.',
+    termo: 'educação',
+    icone: '📚',
+  },
+  {
+    nome: 'Meio ambiente',
+    descricao: 'Natureza, sustentabilidade e clima.',
+    termo: 'meio ambiente',
+    icone: '🌎',
+  },
+  {
+    nome: 'Saúde',
+    descricao: 'Bem-estar, pesquisas e qualidade de vida.',
+    termo: 'saúde',
+    icone: '❤️',
+  },
 ];
 
 export default function Exemplo({
   navegar,
   setPesquisa,
+  setNoticias,
   setErro,
+  carregando,
+  styles
 }) {
+
   function escolherCategoria(termo) {
+
+    if (carregando) {
+      navegar('final');
+      return;
+    }
+
     setPesquisa(termo);
+    setNoticias([]);
     setErro('');
     navegar('final');
   }
@@ -52,23 +84,33 @@ export default function Exemplo({
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
     >
-      <Text style={styles.etiqueta}>ÁREA DE DESCOBERTA</Text>
 
-      <Text style={styles.titulo}>Explorar notícias</Text>
+      <Text style={styles.etiqueta}>
+        ÁREA DE DESCOBERTA
+      </Text>
+
+      <Text style={styles.titulo}>
+        Explore novos assuntos.
+      </Text>
 
       <Text style={styles.subtitulo}>
-        Escolha uma categoria para encontrar notícias.
+        Escolha uma categoria e descubra
+        o que acontece no mundo.
       </Text>
 
       <View style={styles.ilustracao}>
+
         <Text style={styles.ilustracaoIcone}>✦</Text>
+
         <Text style={styles.ilustracaoTitulo}>
-          Informação sobre todos os assuntos.
+          O conhecimento não tem limites.
         </Text>
+
         <Text style={styles.ilustracaoTexto}>
-          Selecione um tema e encontre conteúdos
-          relacionados na página de resultados.
+          Encontre conteúdos de diferentes áreas
+          e acompanhe assuntos que despertam sua curiosidade.
         </Text>
+
       </View>
 
       <Text style={styles.secaoTitulo}>
@@ -76,14 +118,16 @@ export default function Exemplo({
       </Text>
 
       {categorias.map((categoria) => (
+
         <Pressable
           key={categoria.termo}
           onPress={() => escolherCategoria(categoria.termo)}
           style={({ pressed }) => [
             styles.cartao,
-            pressed && { opacity: 0.7 },
+            pressed && { opacity: 0.7 }
           ]}
         >
+
           <View style={styles.iconeCartao}>
             <Text style={styles.iconeCartaoTexto}>
               {categoria.icone}
@@ -94,23 +138,31 @@ export default function Exemplo({
             <Text style={styles.cartaoTitulo}>
               {categoria.nome}
             </Text>
+
             <Text style={styles.cartaoTexto}>
               {categoria.descricao}
             </Text>
           </View>
 
           <Text style={styles.seta}>›</Text>
+
         </Pressable>
+
       ))}
 
       <Pressable
         onPress={() => navegar('home')}
-        style={styles.botaoPrincipal}
+        style={styles.botaoSecundario}
       >
-        <Text style={styles.botaoPrincipalTexto}>
+        <Text style={styles.botaoSecundarioTexto}>
           ← Voltar ao início
         </Text>
       </Pressable>
+
+      <Text style={styles.assinatura}>
+        NEWSFLOW • Descubra novas perspectivas
+      </Text>
+
     </ScrollView>
   );
 }

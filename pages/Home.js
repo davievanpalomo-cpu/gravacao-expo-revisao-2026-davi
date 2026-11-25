@@ -1,29 +1,34 @@
-
 import React from 'react';
-import { View, Text, Pressable, ScrollView } from 'react-native';
-import { styles } from '../styles';
+import {
+  View,
+  Text,
+  Pressable,
+  ScrollView
+} from 'react-native';
 
-export default function Home({ navegar }) {
+export default function Home({ navegar, styles }) {
+
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
     >
-      <View style={styles.topo}>
-        <View>
-          <Text style={styles.etiqueta}>BEM-VINDO AO</Text>
-          <Text style={styles.titulo}>NewsFlow.</Text>
-          <Text style={styles.subtitulo}>
-            Informação ao seu alcance.
-          </Text>
-        </View>
 
-        <View style={styles.avatar}>
-          <Text style={styles.avatarTexto}>N</Text>
-        </View>
-      </View>
+      <Text style={styles.etiqueta}>
+        SEU PORTAL DE INFORMAÇÃO
+      </Text>
 
+      <Text style={styles.titulo}>
+        Bem-vindo ao NewsFlow.
+      </Text>
+
+      <Text style={styles.subtitulo}>
+        Conhecimento que acompanha você.
+      </Text>
+
+      {/* Banner principal */}
       <View style={styles.banner}>
+
         <Text style={styles.bannerEtiqueta}>
           INFORME-SE. DESCUBRA. CONECTE-SE.
         </Text>
@@ -40,14 +45,13 @@ export default function Home({ navegar }) {
 
         <Pressable
           onPress={() => navegar('exemplo')}
-          style={styles.botaoBanner}
+          style={styles.botaoPrincipal}
         >
-          <Text style={styles.botaoBannerTexto}>
+          <Text style={styles.botaoPrincipalTexto}>
             Explorar notícias →
           </Text>
         </Pressable>
 
-        <Text style={styles.bannerDecoracao}>✦</Text>
       </View>
 
       <Text style={styles.secaoTitulo}>
@@ -55,6 +59,7 @@ export default function Home({ navegar }) {
       </Text>
 
       <View style={styles.cartao}>
+
         <View style={styles.iconeCartao}>
           <Text style={styles.iconeCartaoTexto}>◎</Text>
         </View>
@@ -63,15 +68,18 @@ export default function Home({ navegar }) {
           <Text style={styles.cartaoTitulo}>
             Nossa proposta
           </Text>
+
           <Text style={styles.cartaoTexto}>
-            Facilitar o acesso às notícias por meio
-            de uma plataforma simples e organizada.
+            Facilitar o acesso às notícias através
+            de uma plataforma moderna, simples e organizada.
           </Text>
         </View>
+
       </View>
 
       <View style={styles.cartao}>
-        <View style={[styles.iconeCartao, styles.iconeAmarelo]}>
+
+        <View style={styles.iconeCartao}>
           <Text style={styles.iconeCartaoTexto}>✦</Text>
         </View>
 
@@ -79,40 +87,84 @@ export default function Home({ navegar }) {
           <Text style={styles.cartaoTitulo}>
             Nosso objetivo
           </Text>
+
           <Text style={styles.cartaoTexto}>
             Reunir informações de diferentes assuntos
-            e ajudar o usuário a encontrar notícias
-            de seu interesse.
+            e ajudar você a encontrar notícias de seu interesse.
           </Text>
         </View>
+
       </View>
 
       <Text style={styles.secaoTitulo}>
-        O que você encontra aqui?
+        Nossas funcionalidades
       </Text>
 
-      <View style={styles.cartao}>
+      <Pressable
+        style={styles.cartao}
+        onPress={() => navegar('final')}
+      >
+
+        <View style={styles.iconeCartao}>
+          <Text style={styles.iconeCartaoTexto}>⌕</Text>
+        </View>
+
         <View style={styles.cartaoConteudo}>
           <Text style={styles.cartaoTitulo}>
-            📰 Notícias atualizadas
+            Pesquisa inteligente
           </Text>
+
           <Text style={styles.cartaoTexto}>
-            Consulte matérias disponíveis através
-            de nossa integração com uma API de notícias.
+            Pesquise qualquer assunto e encontre
+            matérias relacionadas através da NewsAPI.
           </Text>
         </View>
-      </View>
+
+        <Text style={styles.seta}>›</Text>
+
+      </Pressable>
+
+      <Pressable
+        style={styles.cartao}
+        onPress={() => navegar('exemplo')}
+      >
+
+        <View style={styles.iconeCartao}>
+          <Text style={styles.iconeCartaoTexto}>▤</Text>
+        </View>
+
+        <View style={styles.cartaoConteudo}>
+          <Text style={styles.cartaoTitulo}>
+            Diversidade de assuntos
+          </Text>
+
+          <Text style={styles.cartaoTexto}>
+            Explore tecnologia, ciência, esportes,
+            economia, cultura e entretenimento.
+          </Text>
+        </View>
+
+        <Text style={styles.seta}>›</Text>
+
+      </Pressable>
 
       <View style={styles.cartao}>
+
+        <View style={styles.iconeCartao}>
+          <Text style={styles.iconeCartaoTexto}>◐</Text>
+        </View>
+
         <View style={styles.cartaoConteudo}>
           <Text style={styles.cartaoTitulo}>
-            🔎 Pesquisa por assuntos
+            Experiência personalizada
           </Text>
+
           <Text style={styles.cartaoTexto}>
-            Encontre conteúdos de tecnologia, ciência,
-            esportes, economia e muito mais.
+            Alterne entre o modo claro e escuro
+            para uma leitura mais confortável.
           </Text>
         </View>
+
       </View>
 
       <Pressable
@@ -120,9 +172,13 @@ export default function Home({ navegar }) {
         style={styles.botaoSecundario}
       >
         <Text style={styles.botaoSecundarioTexto}>
-          Ir para os resultados →
+          Acessar central de notícias →
         </Text>
       </Pressable>
+
+      <Text style={styles.assinatura}>
+        NEWSFLOW • Informação e conhecimento
+      </Text>
 
     </ScrollView>
   );

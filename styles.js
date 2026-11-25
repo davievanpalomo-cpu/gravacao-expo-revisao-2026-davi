@@ -1,318 +1,417 @@
+import { StyleSheet, Platform, StatusBar } from 'react-native';
 
-import { StyleSheet } from 'react-native';
+// Paletas de cores
+export function obterCores(modoEscuro) {
 
-export const styles = StyleSheet.create({
-  tela: {
-    flex: 1,
-    backgroundColor: '#F4F8FC',
-  },
+  return modoEscuro
+    ? {
+        fundo: '#0B1424',
+        cartao: '#17283D',
+        texto: '#F1F5F9',
+        secundario: '#B0C4D9',
+        azul: '#60A5FA',
+        botao: '#1565C0',
+        destaque: '#193B5C',
+        borda: '#29415A',
+        banner: '#17365A',
+        branco: '#FFFFFF',
+        erro: '#FCA5A5',
+        fundoErro: '#45252D',
+      }
+    : {
+        fundo: '#F4F8FC',
+        cartao: '#FFFFFF',
+        texto: '#0D2340',
+        secundario: '#64748B',
+        azul: '#1565C0',
+        botao: '#1565C0',
+        destaque: '#E3F2FD',
+        borda: '#E3EDF7',
+        banner: '#0D2340',
+        branco: '#FFFFFF',
+        erro: '#C62828',
+        fundoErro: '#FEECEC',
+      };
+}
 
-  conteudo: {
-    flex: 1,
-  },
+// Estilos dinâmicos
+export function criarEstilos(cores) {
 
-  container: {
-    padding: 22,
-    paddingBottom: 35,
-  },
+  return StyleSheet.create({
 
-  topo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 25,
-  },
+    tela: {
+      flex: 1,
+      backgroundColor: cores.fundo,
+      paddingTop: Platform.OS === 'android'
+        ? StatusBar.currentHeight || 0
+        : Platform.OS === 'ios' ? 50 : 0,
+    },
 
-  etiqueta: {
-    color: '#1565C0',
-    fontSize: 11,
-    fontWeight: '800',
-    letterSpacing: 1.5,
-    marginBottom: 8,
-  },
+    conteudo: {
+      flex: 1,
+    },
 
-  titulo: {
-    color: '#0D2340',
-    fontSize: 29,
-    fontWeight: '800',
-    marginBottom: 6,
-  },
+    container: {
+      padding: 22,
+      paddingBottom: 40,
+    },
 
-  subtitulo: {
-    color: '#64748B',
-    fontSize: 14,
-    lineHeight: 21,
-  },
+    cabecalho: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      backgroundColor: cores.cartao,
+      paddingHorizontal: 22,
+      paddingVertical: 17,
+      borderBottomWidth: 1,
+      borderBottomColor: cores.borda,
+    },
 
-  avatar: {
-    width: 52,
-    height: 52,
-    backgroundColor: '#1565C0',
-    borderRadius: 17,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    logo: {
+      fontSize: 27,
+      fontWeight: '900',
+      color: cores.texto,
+      letterSpacing: -1,
+    },
 
-  avatarTexto: {
-    color: '#FFFFFF',
-    fontSize: 23,
-    fontWeight: '800',
-  },
+    logoSubtitulo: {
+      fontSize: 11,
+      color: cores.secundario,
+      marginTop: 3,
+    },
 
-  banner: {
-    backgroundColor: '#0D2340',
-    borderRadius: 22,
-    padding: 23,
-    marginBottom: 28,
-    overflow: 'hidden',
-  },
+    botaoTema: {
+      width: 45,
+      height: 45,
+      backgroundColor: cores.destaque,
+      borderRadius: 15,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
 
-  bannerEtiqueta: {
-    color: '#90CAF9',
-    fontSize: 11,
-    fontWeight: '800',
-    letterSpacing: 1.3,
-    marginBottom: 13,
-  },
+    etiqueta: {
+      color: cores.azul,
+      fontSize: 11,
+      fontWeight: '800',
+      letterSpacing: 1.5,
+      marginBottom: 8,
+    },
 
-  bannerTitulo: {
-    color: '#FFFFFF',
-    fontSize: 25,
-    fontWeight: '800',
-    lineHeight: 33,
-    marginBottom: 12,
-  },
+    titulo: {
+      color: cores.texto,
+      fontSize: 29,
+      fontWeight: '900',
+      marginBottom: 7,
+    },
 
-  bannerTexto: {
-    color: '#D6E5F5',
-    fontSize: 14,
-    lineHeight: 22,
-  },
+    subtitulo: {
+      color: cores.secundario,
+      fontSize: 14,
+      lineHeight: 22,
+      marginBottom: 23,
+    },
 
-  botaoBanner: {
-    backgroundColor: '#42A5F5',
-    padding: 14,
-    borderRadius: 12,
-    alignItems: 'center',
-    marginTop: 17,
-  },
+    banner: {
+      backgroundColor: cores.banner,
+      borderRadius: 22,
+      padding: 23,
+      marginBottom: 25,
+      overflow: 'hidden',
+    },
 
-  botaoBannerTexto: {
-    color: '#FFFFFF',
-    fontWeight: '800',
-    fontSize: 14,
-  },
+    bannerEtiqueta: {
+      color: '#93C5FD',
+      fontSize: 11,
+      fontWeight: '800',
+      letterSpacing: 1.4,
+      marginBottom: 13,
+    },
 
-  bannerDecoracao: {
-    color: '#42A5F5',
-    fontSize: 60,
-    position: 'absolute',
-    right: 15,
-    top: 5,
-    opacity: 0.16,
-  },
+    bannerTitulo: {
+      color: '#FFFFFF',
+      fontSize: 25,
+      fontWeight: '900',
+      lineHeight: 33,
+      marginBottom: 12,
+    },
 
-  secaoTitulo: {
-    color: '#0D2340',
-    fontSize: 19,
-    fontWeight: '800',
-    marginBottom: 15,
-    marginTop: 8,
-  },
+    bannerTexto: {
+      color: '#D6E5F5',
+      fontSize: 14,
+      lineHeight: 22,
+    },
 
-  cartao: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 17,
-    padding: 16,
-    marginBottom: 13,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#E3EDF7',
-    elevation: 2,
-    shadowColor: '#0D2340',
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 3 },
-  },
+    secaoTitulo: {
+      color: cores.texto,
+      fontSize: 19,
+      fontWeight: '800',
+      marginTop: 8,
+      marginBottom: 15,
+    },
 
-  iconeCartao: {
-    width: 45,
-    height: 45,
-    borderRadius: 14,
-    backgroundColor: '#E3F2FD',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 13,
-  },
+    cartao: {
+      backgroundColor: cores.cartao,
+      borderRadius: 17,
+      padding: 16,
+      marginBottom: 13,
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: cores.borda,
+    },
 
-  iconeAmarelo: {
-    backgroundColor: '#D6E9FA',
-  },
+    iconeCartao: {
+      width: 46,
+      height: 46,
+      borderRadius: 14,
+      backgroundColor: cores.destaque,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginRight: 13,
+    },
 
-  iconeCartaoTexto: {
-    color: '#1565C0',
-    fontSize: 19,
-    fontWeight: '800',
-  },
+    iconeCartaoTexto: {
+      fontSize: 21,
+      color: cores.azul,
+      fontWeight: '800',
+    },
 
-  cartaoConteudo: {
-    flex: 1,
-  },
+    cartaoConteudo: {
+      flex: 1,
+    },
 
-  cartaoTitulo: {
-    color: '#0D2340',
-    fontSize: 15,
-    fontWeight: '800',
-    marginBottom: 5,
-  },
+    cartaoTitulo: {
+      color: cores.texto,
+      fontSize: 16,
+      fontWeight: '800',
+      marginBottom: 6,
+    },
 
-  cartaoTexto: {
-    color: '#64748B',
-    fontSize: 13,
-    lineHeight: 20,
-  },
+    cartaoTexto: {
+      color: cores.secundario,
+      fontSize: 13,
+      lineHeight: 21,
+    },
 
-  seta: {
-    color: '#1565C0',
-    fontSize: 25,
-    marginLeft: 8,
-  },
+    seta: {
+      color: cores.azul,
+      fontSize: 25,
+      marginLeft: 8,
+    },
 
-  botaoPrincipal: {
-    backgroundColor: '#1565C0',
-    padding: 15,
-    borderRadius: 13,
-    alignItems: 'center',
-    marginTop: 10,
-  },
+    botaoPrincipal: {
+      backgroundColor: cores.botao,
+      padding: 16,
+      borderRadius: 13,
+      alignItems: 'center',
+      marginTop: 14,
+    },
 
-  botaoPrincipalTexto: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: '800',
-  },
+    botaoPrincipalTexto: {
+      color: '#FFFFFF',
+      fontSize: 14,
+      fontWeight: '800',
+    },
 
-  botaoSecundario: {
-    backgroundColor: '#E3F2FD',
-    padding: 15,
-    borderRadius: 13,
-    alignItems: 'center',
-    marginTop: 10,
-  },
+    botaoSecundario: {
+      backgroundColor: cores.destaque,
+      padding: 15,
+      borderRadius: 13,
+      alignItems: 'center',
+      marginTop: 10,
+    },
 
-  botaoSecundarioTexto: {
-    color: '#1565C0',
-    fontSize: 14,
-    fontWeight: '800',
-  },
+    botaoSecundarioTexto: {
+      color: cores.azul,
+      fontSize: 14,
+      fontWeight: '800',
+    },
 
-  ilustracao: {
-    backgroundColor: '#DCEEFF',
-    padding: 23,
-    borderRadius: 20,
-    marginVertical: 22,
-  },
+    ilustracao: {
+      backgroundColor: cores.destaque,
+      padding: 23,
+      borderRadius: 20,
+      marginBottom: 24,
+    },
 
-  ilustracaoIcone: {
-    color: '#1565C0',
-    fontSize: 35,
-    marginBottom: 10,
-  },
+    ilustracaoIcone: {
+      fontSize: 32,
+      color: cores.azul,
+      marginBottom: 12,
+    },
 
-  ilustracaoTitulo: {
-    color: '#0D2340',
-    fontSize: 19,
-    fontWeight: '800',
-    marginBottom: 8,
-  },
+    ilustracaoTitulo: {
+      color: cores.texto,
+      fontSize: 19,
+      fontWeight: '800',
+      marginBottom: 9,
+    },
 
-  ilustracaoTexto: {
-    color: '#496783',
-    fontSize: 13,
-    lineHeight: 21,
-  },
+    ilustracaoTexto: {
+      color: cores.secundario,
+      fontSize: 14,
+      lineHeight: 22,
+    },
 
-  finalIcone: {
-    width: 58,
-    height: 58,
-    backgroundColor: '#DCEEFF',
-    borderRadius: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
-  },
+    pesquisaBox: {
+      backgroundColor: cores.cartao,
+      padding: 19,
+      borderRadius: 20,
+      borderWidth: 1,
+      borderColor: cores.borda,
+      marginBottom: 24,
+    },
 
-  finalIconeTexto: {
-    color: '#1565C0',
-    fontSize: 27,
-    fontWeight: '800',
-  },
+    input: {
+      backgroundColor: cores.fundo,
+      color: cores.texto,
+      borderWidth: 1,
+      borderColor: cores.borda,
+      padding: 15,
+      borderRadius: 13,
+      fontSize: 14,
+      marginTop: 14,
+    },
 
-  bannerFinal: {
-    backgroundColor: '#0D2340',
-    padding: 21,
-    borderRadius: 19,
-    marginVertical: 16,
-  },
+    noticia: {
+      backgroundColor: cores.cartao,
+      padding: 14,
+      borderRadius: 19,
+      marginBottom: 17,
+      borderWidth: 1,
+      borderColor: cores.borda,
+    },
 
-  bannerFinalTitulo: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: '800',
-    marginBottom: 10,
-  },
+    noticiaImagem: {
+      width: '100%',
+      height: 185,
+      borderRadius: 13,
+      marginBottom: 15,
+      backgroundColor: cores.destaque,
+    },
 
-  bannerFinalTexto: {
-    color: '#D6E5F5',
-    fontSize: 14,
-    lineHeight: 22,
-  },
+    noticiaFonte: {
+      color: cores.azul,
+      fontSize: 11,
+      fontWeight: '900',
+      marginBottom: 8,
+    },
 
-  rodape: {
-    backgroundColor: '#FFFFFF',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingTop: 12,
-    paddingBottom: 12,
-    borderTopWidth: 1,
-    borderTopColor: '#E3EDF7',
-  },
+    noticiaTitulo: {
+      color: cores.texto,
+      fontSize: 18,
+      fontWeight: '900',
+      lineHeight: 25,
+      marginBottom: 10,
+    },
 
-  itemMenu: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 5,
-  },
+    noticiaDescricao: {
+      color: cores.secundario,
+      fontSize: 13,
+      lineHeight: 21,
+      marginBottom: 15,
+    },
 
-  itemMenuAtivo: {
-    backgroundColor: '#EAF4FF',
-    borderRadius: 12,
-  },
+    resultadoTopo: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      marginBottom: 15,
+    },
 
-  iconeMenu: {
-    fontSize: 21,
-    color: '#94A3B8',
-    marginBottom: 3,
-  },
+    contador: {
+      backgroundColor: cores.destaque,
+      paddingHorizontal: 12,
+      paddingVertical: 7,
+      borderRadius: 20,
+    },
 
-  textoMenu: {
-    color: '#94A3B8',
-    fontSize: 11,
-    fontWeight: '600',
-  },
+    contadorTexto: {
+      color: cores.azul,
+      fontWeight: '800',
+      fontSize: 12,
+    },
 
-  textoAtivo: {
-    color: '#1565C0',
-    fontWeight: '800',
-  },
+    vazio: {
+      backgroundColor: cores.destaque,
+      padding: 25,
+      borderRadius: 19,
+      alignItems: 'center',
+    },
 
-  indicador: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
-    backgroundColor: '#1565C0',
-    marginTop: 3,
-  },
-});
+    carregamento: {
+      alignItems: 'center',
+      marginVertical: 20,
+    },
+
+    erroBox: {
+      backgroundColor: cores.fundoErro,
+      padding: 15,
+      borderRadius: 13,
+      marginBottom: 20,
+    },
+
+    erroTexto: {
+      color: cores.erro,
+      fontWeight: '700',
+      lineHeight: 21,
+    },
+
+    rodape: {
+      backgroundColor: cores.cartao,
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      padding: 10,
+      paddingBottom: Platform.OS === 'ios' ? 28 : 12,
+      borderTopWidth: 1,
+      borderTopColor: cores.borda,
+    },
+
+    itemMenu: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: 8,
+      marginHorizontal: 4,
+      borderRadius: 13,
+    },
+
+    itemMenuAtivo: {
+      backgroundColor: cores.destaque,
+    },
+
+    iconeMenu: {
+      fontSize: 24,
+      color: cores.secundario,
+      marginBottom: 4,
+    },
+
+    textoMenu: {
+      fontSize: 11,
+      fontWeight: '600',
+      color: cores.secundario,
+    },
+
+    textoAtivo: {
+      color: cores.azul,
+      fontWeight: '800',
+    },
+
+    indicador: {
+      width: 5,
+      height: 5,
+      borderRadius: 5,
+      backgroundColor: cores.azul,
+      marginTop: 4,
+    },
+
+    assinatura: {
+      color: cores.secundario,
+      fontSize: 11,
+      textAlign: 'center',
+      marginTop: 25,
+    },
+
+  });
+}
